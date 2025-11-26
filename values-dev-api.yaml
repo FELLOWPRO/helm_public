@@ -35,11 +35,23 @@ ingress:
 
 resources:
   limits:
-    cpu: 1000m
-    memory: 1024Mi
+    cpu: 5
+    memory: 15000Mi
   requests:
-    cpu: 500m
-    memory: 512Mi
+    cpu: 2
+    memory: 5000Mi  # Increased from 3000Mi to match actual usage (~4.3GB)
+
+# Pod anti-affinity to spread API pods across different nodes
+# Prevents memory pressure from multiple pods on same node
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: api
+          topologyKey: kubernetes.io/hostname
 
 autoscaling:
   enabled: false
