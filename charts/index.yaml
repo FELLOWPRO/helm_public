@@ -1,0 +1,71 @@
+apiVersion: v1
+entries:
+  base:
+  - apiVersion: v2
+    appVersion: 0.1.72
+    created: "2026-01-12T15:36:55.573736+01:00"
+    description: A Base Helm chart for Kubernetes - Added support for volumes/volumeMounts
+      format
+    digest: a8e21ab24371cc162140a0a5c61d0923e16c4ce0769167dbb003c753b7c2b885
+    icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
+    name: base
+    type: application
+    urls:
+    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.72.tgz
+    version: 0.1.72
+  - apiVersion: v2
+    appVersion: 0.1.67
+    created: "2026-01-12T15:36:55.572839+01:00"
+    description: A Base Helm chart for Kubernetes
+    digest: 7a1a9a2627ea9a6a301e90c8edb41738c35864da326d838bcdc8313d1511cade
+    icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
+    name: base
+    type: application
+    urls:
+    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.67.tgz
+    version: 0.1.67
+  - apiVersion: v2
+    appVersion: 0.1.66
+    created: "2026-01-12T15:36:55.572295+01:00"
+    description: A Base Helm chart for Kubernetes
+    digest: 2e2339da8aea5cd2f6e03068a146b0fdf9c4bc72eb686efae8df3713b50c3fba
+    icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
+    name: base
+    type: application
+    urls:
+    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.66.tgz
+    version: 0.1.66
+  - apiVersion: v2
+    appVersion: 0.1.65
+    created: "2026-01-12T15:36:55.571749+01:00"
+    description: A Base Helm chart for Kubernetes
+    digest: bb4f0d72f444f8791cd597f97dee88b482f2b07661633e4027cc67d3bb2096c0
+    icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
+    name: base
+    type: application
+    urls:
+    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.65.tgz
+    version: 0.1.65
+  - apiVersion: v2
+    appVersion: 0.1.64
+    created: "2026-01-12T15:36:55.570911+01:00"
+    description: A Base Helm chart for Kubernetes
+    digest: a54cd3840cd97ad75c28c052c987e75c0d641863eecb1c9a8dcbed95dce34550
+    icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
+    name: base
+    type: application
+    urls:
+    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.64.tgz
+    version: 0.1.64
+  - apiVersion: v2
+    appVersion: 0.1.63
+    created: "2026-01-12T15:36:55.569627+01:00"
+    description: A Base Helm chart for Kubernetes
+    digest: f12622deed0e7fd16f969a5bcf793ff041e0aae353d5bfbc2b7bb30cd4f01064
+    icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
+    name: base
+    type: application
+    urls:
+    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.63.tgz
+    version: 0.1.63
+generated: "2026-01-12T15:36:55.567936+01:00"
