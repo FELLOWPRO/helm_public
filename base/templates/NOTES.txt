@@ -45,6 +45,7 @@
 {{- if kindIs "slice" $service -}}
 {{- $service = index $service 0 -}}
 {{- end -}}
+{{- if and $service.enabled $service.type }}
 {{- if contains "NodePort" $service.type }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "base.fullname" . }})
   export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
@@ -59,6 +60,7 @@
   export CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
+{{- end }}
 {{- end }}
 {{- end }}
 {{- else }}
