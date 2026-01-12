@@ -260,8 +260,9 @@ spec:
                 name: {{ .Values.envFrom.secret }}
                 optional: true
             {{- end }}
-          {{- if .Values.deployment.volumes }}
+          {{- if or .Values.deployment.volumes .Values.volumeMounts }}
           volumeMounts:
+            {{- if .Values.deployment.volumes }}
             {{- range $index, $element := .Values.deployment.volumes }}
             {{- if eq $element.container nil }}
             - name: {{ coalesce $element.name (add $index 1) }}
@@ -272,6 +273,10 @@ spec:
               readOnly: {{ $element.readOnly | default false }}
             {{- end }}
             {{- end }}
+            {{- end }}
+            {{- if .Values.volumeMounts }}
+            {{- toYaml .Values.volumeMounts | nindent 12 }}
+            {{- end }}
           {{- end }}
           {{- if .Values.deployment.additionalvolumeMounts }}
             {{- toYaml .Values.deployment.additionalvolumeMounts | nindent 12 }}
@@ -280,8 +285,9 @@ spec:
           lifecycle:
             {{- toYaml .Values.deployment.lifecycle | nindent 12 }}
           {{- end }}
-      {{- if .Values.deployment.volumes }}
+      {{- if or .Values.deployment.volumes .Values.volumes }}
       volumes:
+        {{- if .Values.deployment.volumes }}
         {{- range $index, $element := .Values.deployment.volumes }}
         - name: {{ coalesce $element.name (add $index 1) }}
           {{- if $element.configMap }}
@@ -310,7 +316,11 @@ spec:
             path: {{ $element.hostPath.path }}
             type: {{ $element.hostPath.type }}
           {{- end }}
-      {{- end }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.volumes }}
+        {{- toYaml .Values.volumes | nindent 8 }}
+        {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
