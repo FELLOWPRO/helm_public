@@ -104,6 +104,10 @@ spec:
               {{- end }}
             {{- end }}
           {{- end }}
+          {{- if $initContainer.securityContext }}
+          securityContext:
+            {{- toYaml $initContainer.securityContext | nindent 12 }}
+          {{- end }}
       {{- end }}
       {{- end }}
       {{- if .Values.topologySpreadConstraints }}
