@@ -3,18 +3,18 @@ entries:
   base:
   - apiVersion: v2
     appVersion: 0.1.74
-    created: "2026-02-05T21:06:05.496945+01:00"
+    created: "2026-02-05T20:08:42.088027209Z"
     description: A Base Helm chart for Kubernetes
     digest: 2b476f36494c8dfa0f19bb99047b4f7a6a1f693668ffc41c8dd2bfb52d59efad
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.74.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.74.tgz
     version: 0.1.74
   - apiVersion: v2
     appVersion: 0.1.73
-    created: "2026-02-05T21:06:05.50346+01:00"
+    created: "2026-02-05T20:08:42.099564159Z"
     description: A Base Helm chart for Kubernetes - Added support for volumes/volumeMounts
       format
     digest: 853050ff8c5b2cf615b1c2b3ed7448847cd636fc013ab9aa6b89092718937a94
@@ -22,11 +22,11 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.73.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.73.tgz
     version: 0.1.73
   - apiVersion: v2
     appVersion: 0.1.72
-    created: "2026-02-05T21:06:05.501987+01:00"
+    created: "2026-02-05T20:08:42.097980988Z"
     description: A Base Helm chart for Kubernetes - Added support for volumes/volumeMounts
       format
     digest: a8e21ab24371cc162140a0a5c61d0923e16c4ce0769167dbb003c753b7c2b885
@@ -34,149 +34,149 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.72.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.72.tgz
     version: 0.1.72
   - apiVersion: v2
     appVersion: 0.1.71
-    created: "2026-02-05T21:06:05.496383+01:00"
+    created: "2026-02-05T20:08:42.087138813Z"
     description: A Base Helm chart for Kubernetes - Fixed NOTES.txt ingress template
     digest: 43c0220296dc94917fe726301d56241e8e579895115888e9d33476468b2ebd5c
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.71.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.71.tgz
     version: 0.1.71
   - apiVersion: v2
     appVersion: 0.1.70
-    created: "2026-02-05T21:06:05.495535+01:00"
+    created: "2026-02-05T20:08:42.085563867Z"
     description: A Base Helm chart for Kubernetes
     digest: 360bd65c7eac810ace431dd5fad00968bf268af16fc683f248297cae7285014c
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.70.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.70.tgz
     version: 0.1.70
   - apiVersion: v2
     appVersion: 0.1.69
-    created: "2026-02-05T21:06:05.49429+01:00"
+    created: "2026-02-05T20:08:42.084547974Z"
     description: A Base Helm chart for Kubernetes - Fixed ingress class field usage
     digest: 06eee9bd544c04866483406051eed1c340dcc63bf1b4856dfdbcc3c3200c6054
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.69.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.69.tgz
     version: 0.1.69
   - apiVersion: v2
     appVersion: 0.1.68
-    created: "2026-02-05T21:06:05.493411+01:00"
+    created: "2026-02-05T20:08:42.081462099Z"
     description: A Base Helm chart for Kubernetes
     digest: 64ca7bf68a343bcf483f38b81fdebf93b896665790d7935f40296c82df4e67b2
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.68.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.68.tgz
     version: 0.1.68
   - apiVersion: v2
     appVersion: 0.1.67
-    created: "2026-02-05T21:06:05.501176+01:00"
+    created: "2026-02-05T20:08:42.096402496Z"
     description: A Base Helm chart for Kubernetes
     digest: 7a1a9a2627ea9a6a301e90c8edb41738c35864da326d838bcdc8313d1511cade
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.67.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.67.tgz
     version: 0.1.67
   - apiVersion: v2
     appVersion: 0.1.66
-    created: "2026-02-05T21:06:05.50073+01:00"
+    created: "2026-02-05T20:08:42.09553558Z"
     description: A Base Helm chart for Kubernetes
     digest: 2e2339da8aea5cd2f6e03068a146b0fdf9c4bc72eb686efae8df3713b50c3fba
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.66.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.66.tgz
     version: 0.1.66
   - apiVersion: v2
     appVersion: 0.1.66
-    created: "2026-02-05T21:06:05.492918+01:00"
+    created: "2026-02-05T20:08:42.080279354Z"
     description: A Base Helm chart for Kubernetes - Fixed template issues
     digest: 20cfd932721a04de451ae676150e63f1065b1b050b58ff9c522dd488388e3142
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.66.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.66.tgz
     version: 0.1.66
   - apiVersion: v2
     appVersion: 0.1.65
-    created: "2026-02-05T21:06:05.500324+01:00"
+    created: "2026-02-05T20:08:42.094733705Z"
     description: A Base Helm chart for Kubernetes
     digest: bb4f0d72f444f8791cd597f97dee88b482f2b07661633e4027cc67d3bb2096c0
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.65.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.65.tgz
     version: 0.1.65
   - apiVersion: v2
     appVersion: 0.1.64
-    created: "2026-02-05T21:06:05.499922+01:00"
+    created: "2026-02-05T20:08:42.093794224Z"
     description: A Base Helm chart for Kubernetes
     digest: a54cd3840cd97ad75c28c052c987e75c0d641863eecb1c9a8dcbed95dce34550
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.64.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.64.tgz
     version: 0.1.64
   - apiVersion: v2
     appVersion: 0.1.63
-    created: "2026-02-05T21:06:05.499098+01:00"
+    created: "2026-02-05T20:08:42.089296926Z"
     description: A Base Helm chart for Kubernetes
     digest: f12622deed0e7fd16f969a5bcf793ff041e0aae353d5bfbc2b7bb30cd4f01064
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/charts/base-0.1.63.tgz
+    - https://FELLOWPRO.github.io/helm_public/base/base-0.1.63.tgz
     version: 0.1.63
   - apiVersion: v2
     appVersion: 0.1.63
-    created: "2026-02-05T21:06:05.498416+01:00"
+    created: "2026-02-05T20:08:42.090660849Z"
     description: A Base Helm chart for Kubernetes
     digest: f12622deed0e7fd16f969a5bcf793ff041e0aae353d5bfbc2b7bb30cd4f01064
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base/base-0.1.63.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.63.tgz
     version: 0.1.63
   - apiVersion: v2
     appVersion: 0.1.62
-    created: "2026-02-05T21:06:05.491509+01:00"
+    created: "2026-02-05T20:08:42.07827046Z"
     description: A Base Helm chart for Kubernetes
     digest: 1eb1376ff980522104467c92531e4b646d2d055f643cee418e31435b90bc80cf
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.62.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.62.tgz
     version: 0.1.62
   - apiVersion: v2
     appVersion: 0.1.61
-    created: "2026-02-05T21:06:05.490298+01:00"
+    created: "2026-02-05T20:08:42.076771555Z"
     description: A Base Helm chart for Kubernetes
     digest: 82055927c0056c0c09e3cfdd4769276f448987a5468b2383033562beccd3531b
     icon: https://media.licdn.com/dms/image/C4E0BAQEdK6tkXfbtXQ/company-logo_200_200/0/1674118[…]47483647&v=beta&t=66-Xh3XKEy8l4jC5BCzb-73JqBDxRZPWACNt9KRiL4M
     name: base
     type: application
     urls:
-    - https://fellowpro.github.io/helm_public/base-0.1.61.tgz
+    - https://FELLOWPRO.github.io/helm_public/base-0.1.61.tgz
     version: 0.1.61
-generated: "2026-02-05T21:06:05.488161+01:00"
+generated: "2026-02-05T20:08:42.075328415Z"
