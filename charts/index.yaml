@@ -11,7 +11,7 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.72.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.72.tgz
     version: 0.1.72
   - apiVersion: v2
     appVersion: 0.1.67
@@ -22,7 +22,7 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.67.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.67.tgz
     version: 0.1.67
   - apiVersion: v2
     appVersion: 0.1.66
@@ -33,7 +33,7 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.66.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.66.tgz
     version: 0.1.66
   - apiVersion: v2
     appVersion: 0.1.65
@@ -44,7 +44,7 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.65.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.65.tgz
     version: 0.1.65
   - apiVersion: v2
     appVersion: 0.1.64
@@ -55,7 +55,7 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.64.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.64.tgz
     version: 0.1.64
   - apiVersion: v2
     appVersion: 0.1.63
@@ -66,6 +66,6 @@ entries:
     name: base
     type: application
     urls:
-    - https://fellow-consulting-ag.github.io/helm_public/charts/base-0.1.63.tgz
+    - https://FELLOWPRO.github.io/helm_public/charts/base-0.1.63.tgz
     version: 0.1.63
 generated: "2026-01-12T15:36:55.567936+01:00"

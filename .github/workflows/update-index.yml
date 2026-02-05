@@ -19,7 +19,7 @@ jobs:
           version: v3.7.0
       - name: Update Index
         run: |
-          helm repo index . --url https://fellow-consulting-ag.github.io/helm_public/
+          helm repo index . --url https://FELLOWPRO.github.io/helm_public/
           git config --global user.email "yourbot@yourorg.com"
           git config --global user.name "YourOrg Bot"
           git add index.yaml
