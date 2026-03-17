@@ -1,3 +1,99 @@
+{{- /* =================================================================== */ -}}
+{{- /* NEW baseDomain mode (v0.1.75): triggered when ingress.baseDomain    */ -}}
+{{- /* is set on a map-typed ingress value. Auto-generates host and TLS    */ -}}
+{{- /* from namespace. Falls through to old list-mode for backward compat. */ -}}
+{{- /* =================================================================== */ -}}
+{{- if and .Values.ingress (kindIs "map" .Values.ingress) (hasKey .Values.ingress "baseDomain") (.Values.ingress.baseDomain) -}}
+{{- $fullName := include "base.fullname" . -}}
+{{- $service := .Values.service -}}
+{{- if kindIs "slice" $service -}}
+{{- $service = index $service 0 -}}
+{{- end -}}
+{{- $svcPort := 80 -}}
+{{- if $service -}}
+  {{- if hasKey $service "port" -}}
+    {{- $svcPort = $service.port -}}
+  {{- end -}}
+{{- end -}}
+{{- $host := include "base.ingressHost" . | trim -}}
+{{- $tlsSecret := include "base.tlsSecretName" . | trim -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "base.labels" . | nindent 4 }}
+  annotations:
+    cert-manager.io/cluster-issuer: dns-issuer
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-protocols: "TLSv1.2 TLSv1.3"
+    nginx.ingress.kubernetes.io/tls-ciphersuites: "TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,X-LANG,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Api-Key,X-Device-Id,Access-Control-Allow-Origin,Authorization,X-ORG-ID,x-org-id"
+    {{- if .Values.ingress.annotations }}
+    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.class | default "nginx" }}
+  tls:
+    - secretName: {{ $tlsSecret }}
+      hosts:
+        - {{ $host | quote }}
+  rules:
+    - host: {{ $host | quote }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.path | default "/" }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+{{- if and .Values.ingress.stickyEnabled .Values.ingress.baseDomainSticky }}
+{{- $stickyHost := include "base.ingressHostSticky" . | trim -}}
+{{- $stickyTlsSecret := printf "%s-%s" .Release.Namespace (.Values.ingress.tlsSuffixSticky | default "api-sticky-cert") -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}-sticky
+  labels:
+    {{- include "base.labels" . | nindent 4 }}
+  annotations:
+    cert-manager.io/cluster-issuer: dns-issuer
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/session-cookie-name: route
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,X-LANG,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Api-Key,X-Device-Id,Access-Control-Allow-Origin,Authorization,X-ORG-ID,x-org-id"
+    {{- if .Values.ingress.stickyAnnotations }}
+    {{- toYaml .Values.ingress.stickyAnnotations | nindent 4 }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.class | default "nginx" }}
+  tls:
+    - secretName: {{ $stickyTlsSecret }}
+      hosts:
+        - {{ $stickyHost | quote }}
+  rules:
+    - host: {{ $stickyHost | quote }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.path | default "/" }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+{{- end }}
+{{- else }}
+{{- /* ====================== OLD LIST MODE (backward compat) ====================== */ -}}
 {{- $hasIngress := false -}}
 {{- if .Values.ingress -}}
   {{- if kindIs "slice" .Values.ingress -}}
@@ -101,5 +197,6 @@ spec:
             {{- end }}
           {{- end }}
     {{- end }}
+{{- end }}
 {{- end }}
 {{- end }}

@@ -122,3 +122,71 @@ Return the target/server Kubernetes version
 {{- $mergedAnnotations | toYaml }}
 {{- end }}
 {{- end }}
+
+{{/*
+=============================================================================
+NODE POOL AUTO-DETECTION (v0.1.75)
+=============================================================================
+Automatically selects the correct DigitalOcean node pool based on namespace.
+dev/stage namespaces → dev-stage, sandbox/pre-prod/demo → sandbox, prod → prod
+*/}}
+{{- define "base.nodePool.auto" -}}
+{{- $ns := .Release.Namespace -}}
+{{- if or (contains "dev" $ns) (contains "stage" $ns) -}}
+dev-stage
+{{- else if or (contains "sandbox" $ns) (contains "pre-prod" $ns) (contains "demo" $ns) -}}
+sandbox
+{{- else if or (eq $ns "prod") (eq $ns "prod-v2") -}}
+prod
+{{- else -}}
+dev-stage
+{{- end -}}
+{{- end -}}
+
+{{/*
+=============================================================================
+INGRESS HOST GENERATION (v0.1.75)
+=============================================================================
+Generates ingress hostname: <namespace>.<baseDomain>
+prod namespace gets bare domain (no prefix).
+Usage: set ingress.baseDomain in values to enable auto-generated ingress mode.
+*/}}
+{{- define "base.ingressHost" -}}
+{{- $ns := .Release.Namespace -}}
+{{- $baseDomain := .Values.ingress.baseDomain | default "api.docbits.com" -}}
+{{- if eq $ns "prod" -}}
+{{ $baseDomain }}
+{{- else -}}
+{{ $ns }}.{{ $baseDomain }}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Sticky session ingress host: <namespace>.<baseDomainSticky>
+*/}}
+{{- define "base.ingressHostSticky" -}}
+{{- $ns := .Release.Namespace -}}
+{{- $baseDomain := .Values.ingress.baseDomainSticky | default "api-sticky.docbits.com" -}}
+{{- if eq $ns "prod" -}}
+{{ $baseDomain }}
+{{- else -}}
+{{ $ns }}.{{ $baseDomain }}
+{{- end -}}
+{{- end -}}
+
+{{/*
+=============================================================================
+TLS SECRET NAME GENERATION (v0.1.75)
+=============================================================================
+Generates TLS secret name: <namespace>-<tlsSuffix>
+prod namespace gets bare suffix (no prefix).
+*/}}
+{{- define "base.tlsSecretName" -}}
+{{- $ns := .Release.Namespace -}}
+{{- $suffix := .Values.ingress.tlsSuffix | default "api-cert" -}}
+{{- if eq $ns "prod" -}}
+{{ $suffix }}
+{{- else -}}
+{{ $ns }}-{{ $suffix }}
+{{- end -}}
+{{- end -}}

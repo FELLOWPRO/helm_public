@@ -315,9 +315,12 @@ spec:
           {{- end }}
       {{- end }}
       {{- end }}
-      {{- with .Values.nodeSelector }}
+      {{- if .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+      {{- else }}
+      nodeSelector:
+        doks.digitalocean.com/node-pool: {{ include "base.nodePool.auto" . }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
