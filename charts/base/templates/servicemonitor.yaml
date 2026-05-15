@@ -5,15 +5,37 @@ metadata:
   name: {{ include "base.fullname" . }}
   labels:
     {{- include "base.labels" . | nindent 4 }}
+    {{- if .Values.serviceMonitor.releaseLabel }}
+    release: {{ .Values.serviceMonitor.releaseLabel }}
+    {{- end }}
+    {{- with .Values.serviceMonitor.extraLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   endpoints:
   - interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
+    scheme: {{ .Values.serviceMonitor.scheme | default "http" }}
+    {{- if .Values.serviceMonitor.honorLabels }}
+    honorLabels: true
+    {{- end }}
+    {{- if .Values.serviceMonitor.port }}
+    port: {{ .Values.serviceMonitor.port }}
+    {{- else }}
     targetPort: {{ .Values.serviceMonitor.targetPort }}
+    {{- end }}
+    {{- with .Values.serviceMonitor.relabelings }}
+    relabelings:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+    {{- with .Values.serviceMonitor.metricRelabelings }}
+    metricRelabelings:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      {{- include "base.labels" . | nindent 6 }}
+      {{- include "base.selectorLabels" . | nindent 6 }}
 {{- end }}
