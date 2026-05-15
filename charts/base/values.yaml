@@ -234,5 +234,21 @@ pdb:
 serviceMonitor:
   enabled: false
   interval: 30s
+  # Either targetPort (numeric, container port) OR port (named, Service port).
+  # If both set, `port` takes precedence.
   targetPort: 80
+  # port: metrics
   path: /metrics
+  scheme: http
+  # Required for kube-prometheus-stack: set to the operator's Prometheus
+  # release name so the ServiceMonitor matches `serviceMonitorSelector`.
+  # Example: "kube-prometheus-stack"
+  releaseLabel: ""
+  # Whether to keep the original labels from the scraped metrics.
+  honorLabels: false
+  # Additional labels appended to the ServiceMonitor metadata.
+  extraLabels: {}
+  # Relabel rules applied before scraping.
+  relabelings: []
+  # Relabel rules applied after scraping (metric filtering).
+  metricRelabelings: []
