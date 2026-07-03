@@ -4,6 +4,23 @@
 
 replicaCount: 1
 
+# Set to "StatefulSet" to render a StatefulSet instead of a Deployment — needed
+# when replicas each require their own persistent volume (see volumeClaimTemplates
+# below). Deployment (default) is unaffected by any of these StatefulSet-only values.
+workloadKind: Deployment
+
+# Only used when workloadKind: StatefulSet. Defaults to the release fullname.
+serviceName: ""
+
+# Only used when workloadKind: StatefulSet. Each entry provisions one PVC per
+# replica pod (name must match a volumeMount name in .Values.volumeMounts).
+volumeClaimTemplates: []
+# - name: data
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: do-block-storage
+#   size: 1Gi
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent

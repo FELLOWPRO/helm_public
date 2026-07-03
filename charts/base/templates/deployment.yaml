@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: {{ .Values.workloadKind | default "Deployment" }}
 metadata:
   name: {{ include "base.fullname" . }}
   labels:
@@ -23,6 +23,9 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  {{- if eq (.Values.workloadKind | default "Deployment") "StatefulSet" }}
+  serviceName: {{ .Values.serviceName | default (include "base.fullname" .) }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "base.selectorLabels" . | nindent 6 }}
@@ -31,7 +34,7 @@ spec:
       {{ $value.name }}: {{ $value.value | quote}}
       {{- end }}
       {{- end }}
-  {{- if .Values.strategy }}
+  {{- if and .Values.strategy (ne (.Values.workloadKind | default "Deployment") "StatefulSet") }}
   strategy:
     {{- toYaml .Values.strategy | nindent 12 }}
   {{- end }}
@@ -340,3 +343,19 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if and (eq (.Values.workloadKind | default "Deployment") "StatefulSet") .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- range .Values.volumeClaimTemplates }}
+    - metadata:
+        name: {{ .name }}
+      spec:
+        accessModes:
+          {{- toYaml .accessModes | nindent 10 }}
+        {{- if .storageClassName }}
+        storageClassName: {{ .storageClassName }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .size }}
+    {{- end }}
+  {{- end }}
