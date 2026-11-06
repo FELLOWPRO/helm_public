@@ -9,7 +9,9 @@ on:
 
 jobs:
   build:
-    runs-on: k9s
+    # Public repo: org runner groups don't allow public repos (k9s jobs queue forever), and
+    # GitHub-hosted minutes are free for public repos — so this stays on a hosted runner.
+    runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
         uses: actions/checkout@v5
