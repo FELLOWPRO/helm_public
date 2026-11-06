@@ -206,7 +206,7 @@ spec:
         - name: {{ include "base.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ required "image.tag is required: set it explicitly, e.g. --set image.tag=<tag> (the chart has no default tag)" .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if $.Values.command }}
           command:

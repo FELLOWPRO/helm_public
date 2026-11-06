@@ -24,8 +24,8 @@ volumeClaimTemplates: []
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is  the chart appVersion.
-  tag: 1.21
+  # Required, no default: rendering fails when unset. CI deploys pass --set image.tag=<tag>.
+  # tag: ""
 
 # Init containers
 # initContainers:
