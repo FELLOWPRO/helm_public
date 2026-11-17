@@ -215,8 +215,24 @@ spec:
           {{- if $.Values.args }}
           args: {{  toYaml .Values.args | nindent 12 }}
           {{- end }}
-          {{- if or .Values.extraEnv .Values.secrets}}
+          {{- $otelAttrs := and .Values.otelResourceAttributes.enabled (not (hasKey (.Values.extraEnv | default dict) "OTEL_RESOURCE_ATTRIBUTES")) }}
+          {{- if or .Values.extraEnv .Values.secrets $otelAttrs }}
           env:
+            {{- if $otelAttrs }}
+            # CORE-7419: OpenTelemetry resource attributes. The namespace comes from the
+            # downward API, so every pod reports where it really runs; deployment.environment
+            # defaults to the release namespace (override with otelResourceAttributes.environment).
+            - name: K8S_NAMESPACE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: {{ printf "k8s.namespace.name=$(K8S_NAMESPACE_NAME),k8s.pod.name=$(K8S_POD_NAME),deployment.environment=%s" (default .Release.Namespace .Values.otelResourceAttributes.environment) | quote }}
+            {{- end }}
             {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key | quote}}
               value: {{ $value | quote }}
