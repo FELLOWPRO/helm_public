@@ -269,3 +269,10 @@ serviceMonitor:
   relabelings: []
   # Relabel rules applied after scraping (metric filtering).
   metricRelabelings: []
+
+# CORE-7419: OTEL_RESOURCE_ATTRIBUTES for the main container (k8s.namespace.name and
+# k8s.pod.name from the downward API, deployment.environment = release namespace).
+# Set extraEnv.OTEL_RESOURCE_ATTRIBUTES to take full control.
+otelResourceAttributes:
+  enabled: true
+  # environment: ""   # default: .Release.Namespace
