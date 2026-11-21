@@ -100,6 +100,7 @@ ingress:
 resources: {}
 autoscaling:
   enabled: false
+  external: false   # true: replicas owned by an external autoscaler (KEDA), no spec.replicas rendered
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
