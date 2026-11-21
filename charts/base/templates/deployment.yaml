@@ -20,7 +20,11 @@ spec:
   {{- if .Values.revisionHistoryLimit}}
   revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   {{- end }}
-  {{- if not .Values.autoscaling.enabled }}
+  {{- /* No spec.replicas when an autoscaler owns the replica count: the chart HPA
+         (autoscaling.enabled) or an external one such as a KEDA ScaledObject that is
+         managed outside this chart (autoscaling.external). Otherwise every helm
+         upgrade/rollback would reset the live, autoscaled count to replicaCount. */}}
+  {{- if not (or .Values.autoscaling.enabled .Values.autoscaling.external) }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   {{- if eq (.Values.workloadKind | default "Deployment") "StatefulSet" }}

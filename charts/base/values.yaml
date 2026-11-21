@@ -179,6 +179,15 @@ resources:
 
 autoscaling:
   enabled: false
+  # true = the replica count is owned by an autoscaler outside this chart (e.g. a KEDA
+  # ScaledObject applied separately). The Deployment is then rendered WITHOUT
+  # spec.replicas, so helm upgrade/rollback never resets the autoscaled count; no HPA
+  # is rendered either (that is autoscaling.enabled). replicaCount is ignored.
+  # Only set it where such an autoscaler actually targets this Deployment.
+  # Note: the first upgrade that drops spec.replicas from a release which had it lets
+  # Helm's three-way merge delete the field once (API default 1); the external
+  # autoscaler then scales back to its minimum. Later upgrades leave it untouched.
+  external: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
