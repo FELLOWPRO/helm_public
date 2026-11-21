@@ -260,6 +260,12 @@ product: application
 pdb:
   enabled: false
   minAvailable: 1
+  # Optional (0.1.83+): when set (int or percentage, e.g. 1 or "25%"), the PDB
+  # renders spec.maxUnavailable INSTEAD of minAvailable. Use it for workloads
+  # whose replica count is owned by an autoscaler (HPA/KEDA), so the budget
+  # does not have to track the autoscaler minimum. 0 is rendered as 0 and
+  # forbids every voluntary eviction (node drains wait for the timeout).
+  # maxUnavailable: 1
   pdbName:
 
 serviceMonitor:

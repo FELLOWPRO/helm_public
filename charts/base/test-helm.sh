@@ -211,6 +211,26 @@ else
     FAILED_TESTS=$((FAILED_TESTS+1))
 fi
 
+# Test 12: PDB maxUnavailable replaces minAvailable; unset/null keeps minAvailable
+echo ""
+echo "Test: PDB maxUnavailable (0.1.83)"
+echo "----------------------------------------"
+pdb_max=$(helm template test "$CHART_DIR" --set image.tag=test -f "$TEST_VALUES_DIR/12-pdb-max-unavailable.yaml" -s templates/pdb.yaml 2>&1)
+pdb_zero=$(helm template test "$CHART_DIR" --set image.tag=test -f "$TEST_VALUES_DIR/12-pdb-max-unavailable.yaml" --set pdb.maxUnavailable=0 -s templates/pdb.yaml 2>&1)
+pdb_min=$(helm template test "$CHART_DIR" --set image.tag=test --set pdb.enabled=true --set pdb.minAvailable=3 -s templates/pdb.yaml 2>&1)
+pdb_nul=$(helm template test "$CHART_DIR" --set image.tag=test -f "$TEST_VALUES_DIR/12-pdb-max-unavailable.yaml" --set pdb.maxUnavailable=null -s templates/pdb.yaml 2>&1)
+if echo "$pdb_max" | grep -q "maxUnavailable: 1" && ! echo "$pdb_max" | grep -q "minAvailable" \
+   && echo "$pdb_zero" | grep -q "maxUnavailable: 0" && ! echo "$pdb_zero" | grep -q "minAvailable" \
+   && echo "$pdb_min" | grep -q "minAvailable: 3" && ! echo "$pdb_min" | grep -q "maxUnavailable" \
+   && echo "$pdb_nul" | grep -q "minAvailable: 4" && ! echo "$pdb_nul" | grep -q "maxUnavailable"; then
+    echo "✅ PASSED: maxUnavailable (also 0) wins when set, minAvailable otherwise (also after null)"
+    PASSED_TESTS=$((PASSED_TESTS+1))
+else
+    echo "❌ FAILED: PDB rendering"
+    echo "$pdb_max"; echo "$pdb_zero"; echo "$pdb_min"; echo "$pdb_nul"
+    FAILED_TESTS=$((FAILED_TESTS+1))
+fi
+
 # Summary
 echo ""
 echo "================================"

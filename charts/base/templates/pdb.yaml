@@ -4,7 +4,13 @@ kind: PodDisruptionBudget
 metadata:
   name: {{ .Values.pdb.pdbName | default (include "base.fullname" .) }}
 spec:
+  {{- /* 0.1.83: maxUnavailable, when set, replaces minAvailable (the API
+         rejects a PDB with both). Unset -> identical to 0.1.80. */}}
+  {{- if not (or (kindIs "invalid" .Values.pdb.maxUnavailable) (eq (toString .Values.pdb.maxUnavailable) "")) }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- else }}
   minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "base.selectorLabels" . | nindent 6 }}
