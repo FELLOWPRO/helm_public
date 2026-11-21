@@ -1,0 +1,9 @@
+# Test 12: PDB with maxUnavailable (0.1.83) - renders maxUnavailable, no minAvailable
+image:
+  repository: nginx
+  tag: latest
+
+pdb:
+  enabled: true
+  minAvailable: 4
+  maxUnavailable: 1
