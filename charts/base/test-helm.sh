@@ -195,6 +195,22 @@ else
     FAILED_TESTS=$((FAILED_TESTS+1))
 fi
 
+# Test 11: autoscaling.external on a StatefulSet, guard rails
+echo ""
+echo "Test: external on StatefulSet; enabled+external and string values fail"
+echo "----------------------------------------"
+r_sts=$(helm template t "$CHART_DIR" --set image.tag=test --set workloadKind=StatefulSet --set autoscaling.external=true 2>&1 || true)
+if echo "$r_sts" | grep -q "kind: StatefulSet" && echo "$r_sts" | grep -q "serviceName:" \
+   && ! echo "$r_sts" | grep -q "replicas:" \
+   && ! helm template t "$CHART_DIR" --set image.tag=test --set autoscaling.enabled=true --set autoscaling.external=true >/dev/null 2>&1 \
+   && ! helm template t "$CHART_DIR" --set image.tag=test --set-string autoscaling.external=false >/dev/null 2>&1; then
+    echo "✅ PASSED: StatefulSet without replicas; mutually exclusive and non-boolean values rejected"
+    PASSED_TESTS=$((PASSED_TESTS+1))
+else
+    echo "❌ FAILED: external guard rails"
+    FAILED_TESTS=$((FAILED_TESTS+1))
+fi
+
 # Summary
 echo ""
 echo "================================"

@@ -180,13 +180,18 @@ resources:
 autoscaling:
   enabled: false
   # true = the replica count is owned by an autoscaler outside this chart (e.g. a KEDA
-  # ScaledObject applied separately). The Deployment is then rendered WITHOUT
-  # spec.replicas, so helm upgrade/rollback never resets the autoscaled count; no HPA
-  # is rendered either (that is autoscaling.enabled). replicaCount is ignored.
-  # Only set it where such an autoscaler actually targets this Deployment.
-  # Note: the first upgrade that drops spec.replicas from a release which had it lets
-  # Helm's three-way merge delete the field once (API default 1); the external
-  # autoscaler then scales back to its minimum. Later upgrades leave it untouched.
+  # ScaledObject applied separately). The Deployment/StatefulSet is then rendered
+  # WITHOUT spec.replicas, so helm upgrade no longer resets the autoscaled count.
+  # replicaCount is ignored. Mutually exclusive with enabled (chart HPA). Boolean only.
+  # Only set it where such an autoscaler actually targets this workload.
+  # Transition: the FIRST upgrade that drops spec.replicas from a release which had
+  # it makes Helm's three-way merge delete the field once; the API server defaults
+  # it to 1, i.e. all pods above one are terminated immediately. The autoscaler then
+  # rescales per its metrics (>= its minReplicaCount) with its own polling/HPA delay.
+  # Roll the switch out at low load. Afterwards upgrades, and rollbacks to revisions
+  # rendered with external=true, leave the count alone; a rollback to an older
+  # revision re-applies that revision's replicas. Do not use helm upgrade --force
+  # (object replace = API default 1 on every upgrade).
   external: false
   minReplicas: 1
   maxReplicas: 100
